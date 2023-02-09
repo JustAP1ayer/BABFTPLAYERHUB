@@ -1,8 +1,11 @@
-  coroutine.wrap(function()
+
+coroutine.wrap(function()
 
 local httpService = game:GetService("HttpService")
 local request = (syn and syn.request) or request or (http and http.request) or http_request
+local LastGoldAmount = game.Players.LocalPlayer.Data.Gold.Value
 while wait(100) do --change this to around 60+, depending on what's right for you
+local NewGold = game.Players.LocalPlayer.Data.Gold.Value
 request({
     Url = webhookURL,
     Method = "POST",
@@ -13,13 +16,14 @@ request({
         content = "",
         embeds = {
             {
-                title = "Gold Update!",
-                description = "Updated Gold Bars Amount: " .. game:GetService("Players").LocalPlayer.Data.Gold.Value,
+                title = game.Players.LocalPlayer.Name.. "'s Gold Update!",
+                description = "Total Gold Bars Amount: " .. game.Players.LocalPlayer.Data.Gold.Value,
                 color = 0x81ff57,
                 fields = {
                     {
-                        name = "Username:",
-                        value = game.Players.LocalPlayer.Name.. " ", 
+                        
+ name = "Updated amount made",
+                        value = "Made " .. tostring(NewGold-LastGoldAmount), 
                         inline = true,
                     },
                 },
@@ -27,5 +31,6 @@ request({
         },
     }),
 })
+LastGoldAmount = NewGold 
 end
 end)()

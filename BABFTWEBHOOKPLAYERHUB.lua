@@ -1,10 +1,8 @@
 
-coroutine.wrap(function()
-
 local httpService = game:GetService("HttpService")
 local request = (syn and syn.request) or request or (http and http.request) or http_request
 local LastGoldAmount = game.Players.LocalPlayer.Data.Gold.Value
-while wait(100) do --change this to around 60+, depending on what's right for you
+while wait(69) do --change this to around 60+, depending on what's right for you
 local NewGold = game.Players.LocalPlayer.Data.Gold.Value
 request({
     Url = webhookURL,
@@ -33,4 +31,3 @@ request({
 })
 LastGoldAmount = NewGold 
 end
-end)()

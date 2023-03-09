@@ -18,12 +18,13 @@ b:Box("Gold Bars Webhook","string",function(value2) -- "number" or "string"
     webhookURL1 = value2 
 end)
 
-b:Toggle("^ Enable Webhook ^",function(bool3)
-    _G.GoldWebhook = bool3
+b:Toggle("^ Enable Gold Bars Webhook ^",function(bool)
+    GoldWebhook = bool
+    coroutine.wrap(function()
     local httpService = game:GetService("HttpService")
 local request = (syn and syn.request) or request or (http and http.request) or http_request
 local LastGoldAmount = game.Players.LocalPlayer.Data.Gold.Value
-while _G.GoldWebhook == true do
+while GoldWebhook == true do
 local NewGold = game.Players.LocalPlayer.Data.Gold.Value
 request({
     Url = webhookURL1,
@@ -52,7 +53,8 @@ request({
 })
 LastGoldAmount = NewGold 
 wait(updatespeed)
-end
+end 
+end)()
 end)
 
 local WebhookURL2
@@ -60,12 +62,13 @@ b:Box("Gold Blocks Webhook","string",function(value4) -- "number" or "string"
     WebhookURL2 = value4
 end)
 
-b:Toggle("^ Enable Webhook ^",function(bool5)
-    _G.GoldBarWebhook = bool5
+b:Toggle("^ Enable Gold Blocks Webhook ^",function(bool)
+    GoldBarWebhook = bool
+    coroutine.wrap(function()
     local httpService = game:GetService("HttpService")
 local request = (syn and syn.request) or request or (http and http.request) or http_request
 local LastGoldBlockAmount = game:GetService("Players").LocalPlayer.Data.GoldBlock.Value
-while _G.GoldBarWebhook == true do 
+while GoldBarWebhook == true do 
 local NewGoldBlock = game:GetService("Players").LocalPlayer.Data.GoldBlock.Value
 request({
     Url = WebhookURL2,
@@ -84,7 +87,7 @@ request({
                     {
                         
  name = "Updated amount made",
-                        value = "Made " .. tostring(NewGold-LastGoldAmount) ..  " Gold Blocks!", 
+                        value = "Made " .. tostring(NewGoldBlock-LastGoldBlockAmount) ..  " Gold Blocks", 
                         inline = true,
                     },
                 },
@@ -95,5 +98,6 @@ request({
 LastGoldBlockAmount = NewGoldBlock
 wait(updatespeed)
 end
+end)()
 end)
 

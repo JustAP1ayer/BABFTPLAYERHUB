@@ -1,5 +1,5 @@
 local catboyclub = false
-
+-- this shit doesnt disable so its scrapped 
 function CatboyClub()
     local player = game.Players.LocalPlayer
     local rootPart = player.Character:WaitForChild("HumanoidRootPart")

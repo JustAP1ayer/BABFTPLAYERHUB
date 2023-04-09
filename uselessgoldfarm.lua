@@ -23,7 +23,7 @@
     
     tween:Play()
     
-    wait(16.5)
+    wait(16.2)
       
     game.Players.LocalPlayer.Character.Humanoid:Destroy()
     game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
